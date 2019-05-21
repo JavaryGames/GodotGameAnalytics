@@ -6,6 +6,7 @@ import android.app.Activity;
 import com.gameanalytics.sdk.GameAnalytics;
 import com.gameanalytics.sdk.GAProgressionStatus;
 import com.gameanalytics.sdk.GAErrorSeverity;
+import com.gameanalytics.sdk.GAResourceFlowType;
 
 /**
  * Created by rodrigo favarete on April 2, 2017
@@ -217,6 +218,22 @@ public class GodotGameAnalytics extends Godot.SingletonBase
         }
     }
 
+    public void addResourceEventWithFlowType_source(String currency, float amount, String itemType, String itemId)
+	{
+		if(initialized)
+		{
+			GameAnalytics.addResourceEventWithFlowType(GAResourceFlowType.Source, currency, amount, itemType, itemId);
+		}
+	}
+
+	public void addResourceEventWithFlowType_sink(String currency, float amount, String itemType, String itemId)
+	{
+		if(initialized)
+		{
+			GameAnalytics.addResourceEventWithFlowType(GAResourceFlowType.Sink, currency, amount, itemType, itemId);
+		}
+	}
+
     /**
      * Use this to track custom error events in your game. You can use the various severity level functions 
      * and attach a message.
@@ -299,6 +316,8 @@ public class GodotGameAnalytics extends Godot.SingletonBase
             "progressionComplete_2",
             "progressionComplete_3",
             "progressionComplete_3_WithInt",
+			"addResourceEventWithFlowType_source",
+			"addResourceEventWithFlowType_sink",
             "sendReportDebug",
             "sendReportInfo",
             "sendReportWarning",

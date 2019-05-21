@@ -129,6 +129,15 @@ More information about *Progression Events* can be found [here](http://www.gamea
 
 ___
 
+**Resource Event**
+
+```GDScript
+addResourceEventWithFlowType_source(String currency, float amount, String itemType, String itemId)
+addResourceEventWithFlowType_sink(String currency, float amount, String itemType, String itemId)
+```
+
+Resource events are used to register the flow of your in-game economy (virtual currencies) – the sink (subtract) and the source (add) for each virtual currency.
+
 **Reports With Level Severity**
 
 ```GDScript
