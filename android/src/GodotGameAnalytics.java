@@ -26,18 +26,20 @@ public class GodotGameAnalytics extends Godot.SingletonBase
      * initialize SDK With GameKey and Secret Key
      */
 
-    public void init(String gaGameKey, String gaSecretKey) 
+    public void init(String gaGameKey, String gaSecretKey, String[] gaCurrencies, String[] gaItemTypes)
     {
         if(!initialized) 
         {
             final String gameKey = gaGameKey;
             final String secretKey = gaSecretKey;
+            final String[] currencies = gaCurrencies;
+            final String[] itemTypes = gaItemTypes;
             activity.runOnUiThread(new Runnable() 
             {
                 @Override 
                 public void run() 
                 {
-                    initOnUiThread(gameKey, secretKey);
+                    initOnUiThread(gameKey, secretKey, currencies, itemTypes);
                 }
             });
         }
@@ -47,8 +49,10 @@ public class GodotGameAnalytics extends Godot.SingletonBase
      * Initialize the SDK
      */
 
-    public void initOnUiThread(String gaGameKey, String gaSecretKey) 
-    {   
+    public void initOnUiThread(String gaGameKey, String gaSecretKey, String[] currencies, String[] itemTypes)
+    {
+    	GameAnalytics.configureAvailableResourceCurrencies(currencies);
+    	GameAnalytics.configureAvailableResourceItemTypes(itemTypes);
         GameAnalytics.initializeWithGameKey(activity, gaGameKey, gaSecretKey);
         initialized = true;
     }
@@ -234,6 +238,14 @@ public class GodotGameAnalytics extends Godot.SingletonBase
 		}
 	}
 
+	public void addBusinessEventWithCurrency(String currency, int amount, String itemType, String itemId, String cartType, String receipt, String signature)
+	{
+		if(initialized)
+		{
+			GameAnalytics.addBusinessEventWithCurrency(currency, amount, itemType, itemId, cartType, receipt, "google_play", signature);
+		}
+	}
+
     /**
      * Use this to track custom error events in your game. You can use the various severity level functions 
      * and attach a message.
@@ -318,6 +330,7 @@ public class GodotGameAnalytics extends Godot.SingletonBase
             "progressionComplete_3_WithInt",
 			"addResourceEventWithFlowType_source",
 			"addResourceEventWithFlowType_sink",
+			"addBusinessEventWithCurrency",
             "sendReportDebug",
             "sendReportInfo",
             "sendReportWarning",

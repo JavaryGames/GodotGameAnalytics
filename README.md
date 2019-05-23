@@ -136,7 +136,15 @@ addResourceEventWithFlowType_source(String currency, float amount, String itemTy
 addResourceEventWithFlowType_sink(String currency, float amount, String itemType, String itemId)
 ```
 
-Resource events are used to register the flow of your in-game economy (virtual currencies) – the sink (subtract) and the source (add) for each virtual currency.
+Resource events are used to register the flow of your in-game economy (virtual currencies) – the sink (subtract) and the source (add) for each virtual currency. [More information](https://gameanalytics.com/docs/item/android-sdk#resource)
+
+**Business Event**
+
+```GDScript
+addBusinessEventWithCurrency(String currency, int amount, String itemType, String itemId, String cartType, String receipt, String signature)
+```
+
+Business events are used to track (and validate) real-money transactions. [More information](https://gameanalytics.com/docs/item/android-sdk#business)
 
 **Reports With Level Severity**
 
