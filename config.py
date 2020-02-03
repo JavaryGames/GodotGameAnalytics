@@ -3,6 +3,7 @@ def can_build(plat):
 
 def configure(env):
 	if (env['platform'] == 'android'):
+		return
 		env.android_add_to_manifest("android/AndroidManifestChunk.xml")
 		env.android_add_to_permissions("android/AndroidPermissionsChunk.xml")
 		env.android_add_java_dir("android/src")
